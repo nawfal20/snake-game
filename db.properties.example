@@ -1,0 +1,11 @@
+# ============================================================
+# Fichier de configuration de la base de données
+# ============================================================
+# 1. Copiez ce fichier : cp db.properties.example db.properties
+# 2. Remplissez vos propres valeurs ci-dessous
+# 3. Ne committez JAMAIS db.properties dans Git
+# ============================================================
+
+db.url=jdbc:mysql://localhost:3306/snakegame?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+db.user=root
+db.pass=VotreMotDePasseIci
