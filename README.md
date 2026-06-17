@@ -58,16 +58,20 @@ Le fichier `lib/mysql-connector-j-8.4.0.jar` est inclus dans le dépôt.
 
 ### 5. Lancer le jeu
 
+**🎮 Sous Windows (Recommandé & Ultra simple) :**
+Double-cliquez simplement sur le fichier **`Play.bat`** (ou **`SnakeGame.jar`**) à la racine du projet pour lancer le jeu immédiatement, sans ouvrir de console en arrière-plan.
+
+**💻 Via Terminal / Autres plateformes :**
 ```bash
 # Via Makefile
 make run
 
-# Ou manuellement
+# Ou manuellement (Linux/macOS)
 javac -cp lib/mysql-connector-j-8.4.0.jar -d bin src/**/*.java src/*.java
 java -cp bin:lib/mysql-connector-j-8.4.0.jar Main
 ```
 
-Sous Windows, remplacez `:` par `;` dans le classpath.
+*(Sous Windows, si vous lancez manuellement dans votre terminal, remplacez `:` par `;` dans le classpath)*
 
 ---
 
@@ -85,11 +89,18 @@ Sous Windows, remplacez `:` par `;` dans le classpath.
 
 ## ✨ Fonctionnalités
 
-- 🎮 Modes **1 Joueur** et **2 Joueurs** local
-- 🍎 Nourriture positive, négative et pièces (coins)
-- 🛒 **Store** : achetez des skins avec vos pièces
-- 📊 Enregistrement et classement des scores en base de données
-- ⚙️ Paramètres de vitesse configurables
+- 🎮 **Écran d'accueil / Catalogue (Welcome Panel)** : Un menu interactif animé s'affichant au premier lancement avec le guide, les contrôles et les astuces du jeu.
+- 👥 Modes **1 Joueur** et **2 Joueurs** local
+- 🍎 Nourriture positive, négative et pièces d'or (coins)
+- 🛒 **Store / Magasin** : achetez des **Skins** esthétiques (7 types) et des **Effets actifs** temporaires avec vos pièces.
+- ⚡ **Effets spéciaux de gameplay** :
+  - *Speed Boost* (vitesse augmentée de 35% pendant ~9s)
+  - *Coin Magnet* (multiplicateur x10 des pièces pendant ~30s)
+  - *Invincibilité* (passage à travers les murs et immunité aux collisions corporelles pendant ~30s)
+- 📊 **HUD dynamique** : suivi en temps réel des durées des effets via des barres de progression en cours de partie.
+- ⚙️ **Panneau Administrateur (Admin Panel)** : gestion et modification dynamique du prix des skins et des effets directement en base de données et en mémoire.
+- 📈 Enregistrement et classement des scores en base de données MySQL.
+- 🔧 Paramètres de vitesse configurables.
 
 ---
 

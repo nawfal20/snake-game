@@ -23,6 +23,7 @@ public class Store {
         public int getId() { return id; }
         public String getName() { return name; }
         public int getPrice() { return price; }
+        public void setPrice(int price) { this.price = price; }
         public String getType() { return type; }
     }
 
@@ -55,5 +56,22 @@ public class Store {
 
     public List<StoreItem> getItems() {
         return items;
+    }
+
+    public void updateItemPrice(int itemId, int newPrice) {
+        // Update in memory
+        for (StoreItem item : items) {
+            if (item.getId() == itemId) {
+                item.setPrice(newPrice);
+                break;
+            }
+        }
+        // Update in database
+        try {
+            ScoreDAO dao = new ScoreDAOImpl();
+            dao.updateSkinPrice(itemId, newPrice);
+        } catch (Exception e) {
+            System.err.println("Could not update price in database: " + e.getMessage());
+        }
     }
 }

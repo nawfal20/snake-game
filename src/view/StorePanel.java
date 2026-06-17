@@ -160,16 +160,33 @@ public class StorePanel extends JPanel {
             return;
         }
 
+        if (item.getType().equalsIgnoreCase("EFFECT")) {
+            // Effects are consumable: deduct coins + activate in game
+            player.setTotalCoins(player.getTotalCoins() - item.getPrice());
+            
+            // Update coins in DB if connected
+            if (player.getId() > 0) {
+                ScoreDAO dao = new ScoreDAOImpl();
+                dao.updatePlayerCoins(player.getUsername(), player.getTotalCoins());
+            }
+            
+            // Activate the effect in the game controller
+            controller.GameController gc = mainFrame.getGameController();
+            gc.activateEffect(item.getName());
+            
+            JOptionPane.showMessageDialog(this, 
+                "✅ " + item.getName() + " activated!\nEffect will be active in your next/current game.", 
+                "Effect Activated", JOptionPane.INFORMATION_MESSAGE);
+            mainFrame.showPanel("STORE"); // Refresh view
+            return;
+        }
+
+        // SKIN purchase flow
         if (player.getId() <= 0) {
             // Guest user local buy
             player.setTotalCoins(player.getTotalCoins() - item.getPrice());
-            if (item.getType().equalsIgnoreCase("SKIN")) {
-                JOptionPane.showMessageDialog(this, "Bought! (Guest Profile / Local only)", "Success", JOptionPane.INFORMATION_MESSAGE);
-                equipSkin(item.getName());
-            } else {
-                JOptionPane.showMessageDialog(this, "Effect activated! (Guest Profile / Local only)", "Success", JOptionPane.INFORMATION_MESSAGE);
-                mainFrame.showPanel("STORE");
-            }
+            JOptionPane.showMessageDialog(this, "Bought! (Guest Profile / Local only)", "Success", JOptionPane.INFORMATION_MESSAGE);
+            equipSkin(item.getName());
             return;
         }
 
@@ -177,13 +194,8 @@ public class StorePanel extends JPanel {
         boolean success = dao.buySkin(player.getId(), item.getId(), item.getPrice());
         if (success) {
             player.setTotalCoins(player.getTotalCoins() - item.getPrice());
-            if (item.getType().equalsIgnoreCase("SKIN")) {
-                JOptionPane.showMessageDialog(this, "Skin successfully bought and unlocked! / Skin acheté et débloqué !", "Success", JOptionPane.INFORMATION_MESSAGE);
-                equipSkin(item.getName());
-            } else {
-                JOptionPane.showMessageDialog(this, "Effect activated! / Effet activé !", "Success", JOptionPane.INFORMATION_MESSAGE);
-                mainFrame.showPanel("STORE");
-            }
+            JOptionPane.showMessageDialog(this, "Skin successfully bought and unlocked! / Skin acheté et débloqué !", "Success", JOptionPane.INFORMATION_MESSAGE);
+            equipSkin(item.getName());
         } else {
             JOptionPane.showMessageDialog(this, "Purchase failed! Database error.", "Error", JOptionPane.ERROR_MESSAGE);
         }

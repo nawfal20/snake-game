@@ -19,6 +19,8 @@ public class MainFrame extends JFrame {
     private ScorePanel scorePanel;
     private StorePanel storePanel;
     private SettingsPanel settingsPanel;
+    private AdminPanel adminPanel;
+    private WelcomePanel welcomePanel;
 
     private GameController gameController;
     private Player activePlayer;
@@ -51,21 +53,25 @@ public class MainFrame extends JFrame {
         scorePanel = new ScorePanel(this);
         storePanel = new StorePanel(this);
         settingsPanel = new SettingsPanel(this);
+        adminPanel = new AdminPanel(this);
+        welcomePanel = new WelcomePanel(this);
 
         gameController.setGamePanel(gamePanel);
 
+        mainPanel.add(welcomePanel, "WELCOME");
         mainPanel.add(menuPanel, "MENU");
         mainPanel.add(gamePanel, "GAME");
         mainPanel.add(scorePanel, "SCORES");
         mainPanel.add(storePanel, "STORE");
         mainPanel.add(settingsPanel, "SETTINGS");
+        mainPanel.add(adminPanel, "ADMIN");
 
         add(mainPanel);
 
         addKeyListener(gameController.getKeyboardHandler());
         setFocusable(true);
 
-        showPanel("MENU");
+        showPanel("WELCOME");
 
         // Charger le joueur par défaut en arrière-plan pour ne pas geler le démarrage
         loadDefaultPlayerAsync();
@@ -133,6 +139,17 @@ public class MainFrame extends JFrame {
             if (menuPanel != null) {
                 menuPanel.refreshProfile();
             }
+        } else if (panelName.equals("ADMIN")) {
+            // Recreate AdminPanel to refresh prices
+            mainPanel.remove(adminPanel);
+            adminPanel = new AdminPanel(this);
+            mainPanel.add(adminPanel, "ADMIN");
+            mainPanel.revalidate();
+        }
+
+        // Stop welcome panel animations when leaving it
+        if (!panelName.equals("WELCOME") && welcomePanel != null) {
+            welcomePanel.stopAnimations();
         }
 
         cardLayout.show(mainPanel, panelName);
@@ -144,5 +161,9 @@ public class MainFrame extends JFrame {
     public void startGame(boolean isMultiplayer, String player2Name) {
         showPanel("GAME");
         gameController.startGame(isMultiplayer, player2Name);
+    }
+
+    public GameController getGameController() {
+        return gameController;
     }
 }

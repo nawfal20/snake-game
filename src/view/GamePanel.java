@@ -116,6 +116,43 @@ public class GamePanel extends JPanel {
         g.setFont(Constants.FONT_TITLE.deriveFont(32f));
         g.drawString(String.valueOf(gameController.getLevel()), uiX, 365);
 
+        // === ACTIVE EFFECTS DISPLAY ===
+        int effectY = 400;
+        boolean hasEffect = false;
+        
+        if (gameController.isSpeedBoostActive()) {
+            hasEffect = true;
+            g.setColor(new Color(255, 165, 0)); // Orange
+            g.setFont(new Font("Arial", Font.BOLD, 13));
+            g.drawString("⚡ SPEED BOOST", uiX, effectY);
+            drawEffectBar(g, uiX, effectY + 5, 140, gameController.getSpeedBoostTicks(), 83);
+            effectY += 40;
+        }
+        
+        if (gameController.isCoinMagnetActive()) {
+            hasEffect = true;
+            g.setColor(Constants.COLOR_COIN);
+            g.setFont(new Font("Arial", Font.BOLD, 13));
+            g.drawString("🧲 COIN MAGNET x2", uiX, effectY);
+            drawEffectBar(g, uiX, effectY + 5, 140, gameController.getCoinMagnetTicks(), 125);
+            effectY += 40;
+        }
+        
+        if (gameController.isInvincibilityActive()) {
+            hasEffect = true;
+            g.setColor(new Color(0, 200, 255)); // Cyan
+            g.setFont(new Font("Arial", Font.BOLD, 13));
+            g.drawString("🛡 INVINCIBLE", uiX, effectY);
+            drawEffectBar(g, uiX, effectY + 5, 140, gameController.getInvincibilityTicks(), 83);
+            effectY += 40;
+        }
+        
+        if (!hasEffect) {
+            g.setColor(Constants.COLOR_TEXT_MUTED);
+            g.setFont(new Font("Arial", Font.ITALIC, 12));
+            g.drawString("No effects active", uiX, effectY);
+        }
+
         g.setColor(Constants.COLOR_TEXT_MUTED);
         g.setFont(new Font("Arial", Font.PLAIN, 12));
         g.drawString("Press ESC to Pause", uiX, Constants.WINDOW_HEIGHT - 60);
@@ -175,5 +212,24 @@ public class GamePanel extends JPanel {
         String subText = "Speed Increased!";
         int subWidth = g.getFontMetrics().stringWidth(subText);
         g.drawString(subText, (Constants.GRID_WIDTH * Constants.TILE_SIZE - subWidth) / 2, y + 45);
+    }
+
+    private void drawEffectBar(Graphics2D g, int x, int y, int width, int currentTicks, int maxTicks) {
+        int barHeight = 6;
+        float ratio = Math.min(1.0f, (float) currentTicks / maxTicks);
+        
+        // Background bar
+        g.setColor(new Color(40, 40, 50));
+        g.fillRoundRect(x, y, width, barHeight, 4, 4);
+        
+        // Fill bar with gradient based on remaining time
+        int fillWidth = (int) (width * ratio);
+        if (fillWidth > 0) {
+            Color barColor = ratio > 0.5f ? g.getColor() : (ratio > 0.25f ? new Color(255, 165, 0) : new Color(255, 50, 50));
+            // Keep current color for high ratio
+            if (ratio > 0.5f) barColor = g.getColor();
+            g.setColor(barColor);
+            g.fillRoundRect(x, y, fillWidth, barHeight, 4, 4);
+        }
     }
 }

@@ -102,13 +102,16 @@ public class MenuPanel extends JPanel {
         JButton btnSettings = createModernButton("Settings & Help", new Color(200, 150, 255));
         btnSettings.addActionListener(e -> mainFrame.showPanel("SETTINGS"));
 
+        JButton btnAdmin = createModernButton("⚙ Admin / Manage Prices", new Color(180, 100, 255));
+        btnAdmin.addActionListener(e -> mainFrame.showPanel("ADMIN"));
+
         JButton btnQuit = createModernButton("Quit", Color.GRAY);
         btnQuit.addActionListener(e -> {
             database.DatabaseManager.closeConnection();
             System.exit(0);
         });
         
-        menuButtons = new JButton[] { btn1Player, btn2Players, btnStore, btnScores, btnSettings, btnQuit };
+        menuButtons = new JButton[] { btn1Player, btn2Players, btnStore, btnScores, btnSettings, btnAdmin, btnQuit };
 
         // DB status label with retry button
         JPanel dbPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
