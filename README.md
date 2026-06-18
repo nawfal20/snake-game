@@ -94,13 +94,14 @@ java -cp bin:lib/mysql-connector-j-8.4.0.jar Main
 - 🍎 Nourriture positive, négative et pièces d'or (coins)
 - 🛒 **Store / Magasin** : achetez des **Skins** esthétiques (7 types) et des **Effets actifs** temporaires avec vos pièces.
 - ⚡ **Effets spéciaux de gameplay** :
-  - *Speed Boost* (vitesse augmentée de 35% pendant ~9s)
+  - *Speed Boost* (vitesse augmentée de 35% pendant ~10s)
   - *Coin Magnet* (multiplicateur x10 des pièces pendant ~30s)
-  - *Invincibilité* (passage à travers les murs et immunité aux collisions corporelles pendant ~30s)
+  - *Invincibilité* (passage à travers les murs et immunité aux collisions pendant ~30s)
 - 📊 **HUD dynamique** : suivi en temps réel des durées des effets via des barres de progression en cours de partie.
-- ⚙️ **Panneau Administrateur (Admin Panel)** : gestion et modification dynamique du prix des skins et des effets directement en base de données et en mémoire.
+- ⚙️ **Panneau Administrateur (Admin Panel)** : gestion dynamique des prix avec bouton **"↩ Default Prices"** pour réinitialiser tous les prix par défaut en un clic.
+- 🔐 **Authentification Admin** : accès sécurisé au panneau admin par login et mot de passe.
 - 📈 Enregistrement et classement des scores en base de données MySQL.
-- 🔧 Paramètres de vitesse configurables.
+- 🔧 Paramètres de vitesse configurables dans `utils/Constants.java`.
 
 ---
 

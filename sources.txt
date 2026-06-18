@@ -16,8 +16,11 @@ src/model/Segment.java
 src/model/Snake.java
 src/model/Store.java
 src/utils/Constants.java
+src/view/AdminLoginPanel.java
+src/view/AdminPanel.java
 src/view/GamePanel.java
 src/view/MainFrame.java
 src/view/MenuPanel.java
 src/view/ScorePanel.java
 src/view/StorePanel.java
+src/view/WelcomePanel.java

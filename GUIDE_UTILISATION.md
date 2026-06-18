@@ -75,9 +75,9 @@ Le magasin affiche les différents skins et effets pour votre serpent. Vous pouv
 - **Rainbow Snake** (1500 pièces) : Serpent arc-en-ciel dont les couleurs se déplacent de manière fluide.
 
 #### ⚡ Effets Actifs (Temporaires)
-- **Speed Boost** (50 pièces) : Accélère la vitesse de déplacement du serpent de 35% pendant environ **9 secondes**.
+- **Speed Boost** (50 pièces) : Accélère la vitesse de déplacement du serpent de **35%** pendant environ **10 secondes**.
 - **Coin Magnet** (200 pièces) : Multiplie par **10x** la valeur de toutes les pièces d'or récoltées pendant environ **30 secondes**.
-- **Invincibilité** (1000 pièces) : Permet de traverser les murs en se téléportant de l'autre côté de la grille et d'ignorer complètement les collisions corporelles avec vous-même ou l'autre joueur pendant environ **30 secondes**.
+- **Invincibilité** (1000 pièces) : Permet de traverser les murs en se téléportant de l'autre côté de la grille et d'ignorer les collisions corporelles pendant environ **30 secondes**.
 
 #### ⏳ Système d'Activation des Effets
 - **En attente (Pending)** : Si vous achetez des effets depuis le Store alors que la partie n'a pas encore commencé, ils sont stockés en "attente". Ils s'activeront tous automatiquement dès que vous lancerez la partie.
@@ -115,10 +115,11 @@ Le magasin affiche les différents skins et effets pour votre serpent. Vous pouv
 
 ## ⚙️ 5. Panneau Administrateur (`Admin Panel`)
 
-- **Accès** : Cliquez sur le bouton **"⚙ Admin / Manage Prices"** dans le menu principal.
+- **Accès** : Cliquez sur le bouton **"⚙ Admin / Manage Prices"** dans le menu principal, puis entrez vos identifiants administrateur (login + mot de passe).
 - **Fonctionnalité** : Affiche la liste complète de tous les items de la boutique (skins et effets) avec leurs types et leurs prix actuels.
-- **Modification** : Entrez simplement la nouvelle valeur dans la case du prix et cliquez sur **"Save"** pour mettre à jour immédiatement.
-- **Persistance** : Le prix est instantanément actualisé en mémoire et persisté dans la table `store_items` de MySQL.
+- **Modification individuelle** : Entrez la nouvelle valeur dans la case du prix et cliquez sur **"Save"** pour mettre à jour immédiatement en mémoire et en base de données.
+- **Réinitialisation globale** : Cliquez sur **"↩ Default Prices"** pour remettre tous les prix à leurs valeurs d'origine en un seul clic (avec confirmation).
+- **Persistance** : Tous les changements sont instantanément persistés dans la table `store_items` de MySQL.
 
 ---
 
