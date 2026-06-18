@@ -95,8 +95,8 @@ public class GameController implements ActionListener {
     private void applyEffectNow(String effectName) {
         String name = effectName.toLowerCase();
         if (name.contains("speed")) {
-            // Speed Boost: ~9 seconds worth of ticks
-            speedBoostTicks = (int) (9000.0 / timer.getDelay());
+            // Speed Boost: ~10 seconds worth of ticks
+            speedBoostTicks = (int) (10000.0 / timer.getDelay());
             applySpeedBoost(true);
         } else if (name.contains("magnet") || name.contains("coin")) {
             // Coin Magnet: ~30 seconds worth of ticks

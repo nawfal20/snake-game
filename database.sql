@@ -42,9 +42,9 @@ INSERT IGNORE INTO store_items (id, item_name, price, type) VALUES
 (5, 'Ice Snake', 300, 'SKIN'),
 (6, 'Phantom Snake', 800, 'SKIN'),
 (7, 'Rainbow Snake', 1500, 'SKIN'),
-(8, 'Speed Boost', 50, 'EFFECT'),
-(9, 'Coin Magnet', 200, 'EFFECT'),
-(10, 'Invincibility (10s)', 1000, 'EFFECT');
+(8, 'Coin Magnet', 200, 'EFFECT'),
+(9, 'Invincibility (10s)', 1000, 'EFFECT'),
+(10, 'Speed Boost (10s)', 50, 'EFFECT');
 
 -- Index pour accélérer les requêtes fréquentes
 -- Index pour accélérer les requêtes fréquentes

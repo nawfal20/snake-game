@@ -20,4 +20,6 @@ public interface ScoreDAO {
     int getBestScore(String username);
     List<Player> getAllPlayers();
     void updateSkinPrice(int itemId, int newPrice);
+    void saveStoreItem(Store.StoreItem item);
+    void deleteStoreItem(int itemId);
 }

@@ -2,6 +2,7 @@
 # Fichiers sensibles — NE PAS committer
 # ==============================
 db.properties
+admin.properties
 
 # Fichiers compilés
 bin/

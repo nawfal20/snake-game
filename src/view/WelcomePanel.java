@@ -39,7 +39,7 @@ public class WelcomePanel extends JPanel {
                         "Features:\n" +
                         "  • Single player and 2-player local multiplayer\n" +
                         "  • 7 unique snake skins (Neon, Gold, Diamond, Fire, Ice, Phantom, Rainbow)\n" +
-                        "  • 3 power-up effects (Speed Boost, Coin Magnet, Invincibility)\n" +
+                        "  • 3 power-up effects (Coin Magnet, Invincibility, Baguette Magique)\n" +
                         "  • Progressive difficulty with level system\n" +
                         "  • Online scoreboard with MySQL database\n" +
                         "  • Store to buy and equip cosmetics",
@@ -82,9 +82,9 @@ public class WelcomePanel extends JPanel {
                         "  👻 Phantom Snake (800c) — Semi-transparent ghost\n" +
                         "  🌈 Rainbow Snake (1500c) — Animated rainbow colors\n\n" +
                         "Effects — Temporary power-ups:\n" +
-                        "  ⚡ Speed Boost (50c) — Move 35% faster for ~9 seconds\n" +
                         "  🧲 Coin Magnet (200c) — Coins worth 10x value for ~30 seconds\n" +
-                        "  🛡 Invincibility (1000c) — Pass through walls for ~30 seconds",
+                        "  🛡 Invincibility (1000c) — Pass through walls for ~30 seconds\n" +
+                        "  🪄 Speed Boost (50c) — Increase speed for 10s",
                 new Color(200, 150, 255));
         content.add(storeCard);
         content.add(Box.createVerticalStrut(20));

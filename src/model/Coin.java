@@ -7,7 +7,7 @@ import utils.Constants;
 public class Coin extends Resource {
 
     public Coin(int x, int y) {
-        super(x, y, Constants.COLOR_COIN, 5); // 5 points or used as currency
+        super(x, y, Constants.COLOR_COIN, 5); // 5 points d'or used as currency
     }
 
     @Override

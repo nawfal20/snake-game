@@ -284,4 +284,37 @@ public class ScoreDAOImpl implements ScoreDAO {
             System.err.println("Erreur updateSkinPrice: " + e.getMessage());
         }
     }
+
+    @Override
+    public void saveStoreItem(Store.StoreItem item) {
+        Connection conn = DatabaseManager.getConnection();
+        if (conn == null) return;
+        String query = "INSERT INTO store_items (id, item_name, price, type) VALUES (?, ?, ?, ?) " +
+                       "ON DUPLICATE KEY UPDATE item_name = ?, price = ?, type = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, item.getId());
+            stmt.setString(2, item.getName());
+            stmt.setInt(3, item.getPrice());
+            stmt.setString(4, item.getType());
+            stmt.setString(5, item.getName());
+            stmt.setInt(6, item.getPrice());
+            stmt.setString(7, item.getType());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur saveStoreItem: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteStoreItem(int itemId) {
+        Connection conn = DatabaseManager.getConnection();
+        if (conn == null) return;
+        String query = "DELETE FROM store_items WHERE id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, itemId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur deleteStoreItem: " + e.getMessage());
+        }
+    }
 }

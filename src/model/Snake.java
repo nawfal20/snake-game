@@ -3,7 +3,6 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.LinkedList;
-import utils.Constants;
 
 public class Snake {
     private LinkedList<Segment> body;
@@ -18,10 +17,14 @@ public class Snake {
         this.body = new LinkedList<>();
         // Start with 3 segments
         for (int i = 0; i < 3; i++) {
-            if (startDir == Direction.RIGHT) body.add(new Segment(startX - i, startY));
-            else if (startDir == Direction.LEFT) body.add(new Segment(startX + i, startY));
-            else if (startDir == Direction.UP) body.add(new Segment(startX, startY + i));
-            else if (startDir == Direction.DOWN) body.add(new Segment(startX, startY - i));
+            if (startDir == Direction.RIGHT)
+                body.add(new Segment(startX - i, startY));
+            else if (startDir == Direction.LEFT)
+                body.add(new Segment(startX + i, startY));
+            else if (startDir == Direction.UP)
+                body.add(new Segment(startX, startY + i));
+            else if (startDir == Direction.DOWN)
+                body.add(new Segment(startX, startY - i));
         }
         this.currentDirection = startDir;
         this.nextDirection = startDir;
@@ -37,7 +40,8 @@ public class Snake {
     }
 
     public void move() {
-        if (!isAlive) return;
+        if (!isAlive)
+            return;
 
         currentDirection = nextDirection;
         Segment head = body.getFirst();
@@ -45,10 +49,18 @@ public class Snake {
         int newY = head.getY();
 
         switch (currentDirection) {
-            case UP: newY--; break;
-            case DOWN: newY++; break;
-            case LEFT: newX--; break;
-            case RIGHT: newX++; break;
+            case UP:
+                newY--;
+                break;
+            case DOWN:
+                newY++;
+                break;
+            case LEFT:
+                newX--;
+                break;
+            case RIGHT:
+                newX++;
+                break;
         }
 
         // Add new head
@@ -101,17 +113,17 @@ public class Snake {
 
     public void draw(Graphics2D g, int tileSize) {
         java.awt.Composite originalComposite = g.getComposite();
-        
+
         for (int i = 0; i < body.size(); i++) {
             Segment segment = body.get(i);
             int x = segment.getX() * tileSize;
             int y = segment.getY() * tileSize;
-            
+
             // Set drawing style based on selected skin
             String skin = skinName.toLowerCase().trim();
             Color currentHeadColor = headColor;
             Color currentBodyColor = bodyColor;
-            
+
             if (skin.contains("neon")) {
                 currentHeadColor = new java.awt.Color(0, 255, 255); // Cyan
                 currentBodyColor = new java.awt.Color(255, 0, 128); // Hot Pink
@@ -136,7 +148,8 @@ public class Snake {
                 g.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.45f));
             } else if (skin.contains("rainbow")) {
                 float hue = (float) ((i * 25 - System.currentTimeMillis() / 8) % 360) / 360.0f;
-                if (hue < 0) hue += 1.0f;
+                if (hue < 0)
+                    hue += 1.0f;
                 Color rain = java.awt.Color.getHSBColor(hue, 0.9f, 0.95f);
                 currentHeadColor = java.awt.Color.getHSBColor((hue + 0.1f) % 1.0f, 0.9f, 0.95f);
                 currentBodyColor = rain;
@@ -182,7 +195,8 @@ public class Snake {
                     // Ice block look with inner border
                     g.fillRect(x + padding, y + padding, tileSize - 2 * padding, tileSize - 2 * padding);
                     g.setColor(java.awt.Color.WHITE);
-                    g.drawRect(x + padding + 1, y + padding + 1, tileSize - 2 * padding - 2, tileSize - 2 * padding - 2);
+                    g.drawRect(x + padding + 1, y + padding + 1, tileSize - 2 * padding - 2,
+                            tileSize - 2 * padding - 2);
                 } else if (skin.contains("neon")) {
                     // Glowing inner border
                     g.fillRoundRect(x + padding, y + padding, tileSize - 2 * padding, tileSize - 2 * padding, 8, 8);
@@ -193,7 +207,7 @@ public class Snake {
                 }
             }
         }
-        
+
         // Restore opacity if phantom skin was used
         g.setComposite(originalComposite);
     }

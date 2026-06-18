@@ -111,10 +111,33 @@ public class AdminPanel extends JPanel {
                 "Saved", JOptionPane.INFORMATION_MESSAGE);
         });
 
+        JButton btnDefaultPrices = createModernButton("↩ Default Prices", new Color(255, 140, 0));
+        btnDefaultPrices.addActionListener(e -> {
+            int response = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to reset all prices to their default values?\n" +
+                "Voulez-vous vraiment réinitialiser tous les prix par défaut ?",
+                "Reset Prices", JOptionPane.YES_NO_OPTION);
+            if (response == JOptionPane.YES_OPTION) {
+                for (Store.StoreItem item : store.getItems()) {
+                    int defaultPrice = Store.getDefaultPrice(item.getId());
+                    store.updateItemPrice(item.getId(), defaultPrice);
+                    JTextField field = priceFields.get(item.getId());
+                    if (field != null) {
+                        field.setText(String.valueOf(defaultPrice));
+                    }
+                }
+                JOptionPane.showMessageDialog(this,
+                    "All prices reset to default successfully!\n" +
+                    "Tous les prix ont été réinitialisés par défaut !",
+                    "Reset Complete", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
         JButton btnBack = createModernButton("← Back to Menu", Constants.COLOR_COIN);
         btnBack.addActionListener(e -> mainFrame.showPanel("MENU"));
 
         bottomPanel.add(btnSaveAll);
+        bottomPanel.add(btnDefaultPrices);
         bottomPanel.add(btnBack);
         add(bottomPanel, BorderLayout.SOUTH);
     }

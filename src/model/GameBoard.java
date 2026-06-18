@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import utils.Constants;
 
 public class GameBoard {
     private int width;
@@ -26,7 +25,7 @@ public class GameBoard {
                 break;
             }
         }
-        
+
         int type;
         if (!hasCoin) {
             type = 8; // Force coin spawn
@@ -44,20 +43,23 @@ public class GameBoard {
             // Check collision with snake 1
             if (snake1 != null) {
                 for (Segment s : snake1.getBody()) {
-                    if (s.getX() == x && s.getY() == y) validPosition = false;
+                    if (s.getX() == x && s.getY() == y)
+                        validPosition = false;
                 }
             }
 
             // Check collision with snake 2
             if (snake2 != null) {
                 for (Segment s : snake2.getBody()) {
-                    if (s.getX() == x && s.getY() == y) validPosition = false;
+                    if (s.getX() == x && s.getY() == y)
+                        validPosition = false;
                 }
             }
-            
+
             // Check collision with other resources
             for (Resource r : resources) {
-                if (r.getX() == x && r.getY() == y) validPosition = false;
+                if (r.getX() == x && r.getY() == y)
+                    validPosition = false;
             }
 
         } while (!validPosition);

@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
     private GamePanel gamePanel;
     private ScorePanel scorePanel;
     private StorePanel storePanel;
-    private SettingsPanel settingsPanel;
+    private AdminLoginPanel adminLoginPanel;
     private AdminPanel adminPanel;
     private WelcomePanel welcomePanel;
 
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame {
         gamePanel = new GamePanel(this, gameController);
         scorePanel = new ScorePanel(this);
         storePanel = new StorePanel(this);
-        settingsPanel = new SettingsPanel(this);
+        adminLoginPanel = new AdminLoginPanel(this);
         adminPanel = new AdminPanel(this);
         welcomePanel = new WelcomePanel(this);
 
@@ -63,7 +63,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(gamePanel, "GAME");
         mainPanel.add(scorePanel, "SCORES");
         mainPanel.add(storePanel, "STORE");
-        mainPanel.add(settingsPanel, "SETTINGS");
+        mainPanel.add(adminLoginPanel, "ADMIN_LOGIN");
         mainPanel.add(adminPanel, "ADMIN");
 
         add(mainPanel);
@@ -145,6 +145,10 @@ public class MainFrame extends JFrame {
             adminPanel = new AdminPanel(this);
             mainPanel.add(adminPanel, "ADMIN");
             mainPanel.revalidate();
+        } else if (panelName.equals("ADMIN_LOGIN")) {
+            if (adminLoginPanel != null) {
+                adminLoginPanel.resetFields();
+            }
         }
 
         // Stop welcome panel animations when leaving it
